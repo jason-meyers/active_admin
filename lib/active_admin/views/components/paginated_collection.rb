@@ -87,6 +87,8 @@ module ActiveAdmin
 
       # modified from will_paginate
       def page_entries_info(options = {})
+#jason
+puts "jason 4"
         if options[:entry_name]
           entry_name   = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
@@ -98,14 +100,21 @@ module ActiveAdmin
           entry_name   = I18n.translate key, :count => 1,               :default => collection.first.class.name.underscore.sub('_', ' ')
           entries_name = I18n.translate key, :count => collection.size, :default => entry_name.pluralize
         end
-
+#jason
+puts "jason 5"
         if collection.num_pages < 2
+
+#jason
+puts "jason 6"          
           case collection_size
           when 0; I18n.t('active_admin.pagination.empty',    :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one',      :model => entry_name)
           else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
           end
         else
+
+#jason
+puts "jason 7"          
           offset = (collection.current_page - 1) * collection.limit_value
           if @display_total
             total  = collection.total_count
