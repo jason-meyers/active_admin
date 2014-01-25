@@ -140,6 +140,14 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
 
+          ## support large collections
+          if pagination_total
+            entries_name = active_admin_config.plural_resource_label(:count => collection_size)
+          else
+            entries_name = active_admin_config.plural_resource_label(:count => 2)
+          end
+          ## end
+
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
                                            :download_links => download_links,
