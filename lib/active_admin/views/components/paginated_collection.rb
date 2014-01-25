@@ -36,6 +36,9 @@ module ActiveAdmin
       #   download_links => Download links override (false or [:csv, :pdf])
       #
       def build(collection, options = {})
+#jason
+puts "AA"
+
         @collection     = collection
         @param_name     = options.delete(:param_name)
         @download_links = options.delete(:download_links)
@@ -44,6 +47,9 @@ module ActiveAdmin
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
+
+#jason
+puts "AB"
 
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats(options)
@@ -62,16 +68,28 @@ module ActiveAdmin
       protected
 
       def build_pagination_with_formats(options)
+
+#jason
+puts "AC"
+        
         div :id => "index_footer" do
+
+#jason
+puts "AD"          
           build_pagination
+#jason
+puts "AE"          
           div(page_entries_info(options).html_safe, :class => "pagination_information")
 
+#jason
+puts "AF"
           if @download_links.is_a?(Array) && !@download_links.empty?
             build_download_format_links @download_links
           else
             build_download_format_links unless @download_links == false
           end
-
+#jason
+puts "AG"
         end
       end
 
@@ -79,7 +97,12 @@ module ActiveAdmin
         options =  request.query_parameters.except(:commit, :format)
         options[:param_name] = @param_name if @param_name
 
+#jason
+puts "AH"
         text_node paginate(collection, options.symbolize_keys)
+
+#jason
+puts "AI"
       end
 
       include ::ActiveAdmin::Helpers::Collection
