@@ -15,8 +15,16 @@ module ActiveAdmin
         size
       end
 
+      # postgres timeout on large tables
       def collection_is_empty?(collection=collection)
         collection_size(collection) == 0
+
+        size = collection.reorder("").limit(1).count
+        # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
+        size = size.size if size.kind_of?(Hash)
+
+        size > 0
+          
       end
     end
   end
