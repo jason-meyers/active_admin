@@ -19,7 +19,7 @@ module ActiveAdmin
       def collection_is_empty?(collection=collection)
         #collection_size(collection) == 0
 
-        collection.reorder("").limit(1).size == 0
+        collection.reorder("").limit(1).length == 0
      
           
       end
