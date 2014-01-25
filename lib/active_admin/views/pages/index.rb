@@ -140,6 +140,9 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
 
+#jason
+puts "jason 1"
+
           ## support large collections
           if pagination_total
             entries_name = active_admin_config.plural_resource_label(:count => collection_size)
@@ -148,16 +151,21 @@ module ActiveAdmin
           end
           ## end
 
+#jason
+puts "jason 2"
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
                                            :download_links => download_links,
                                            :paginator      => paginator,
                                            :pagination_total => pagination_total) do
             div :class => 'index_content' do
+#jason
+puts "jason 3"
               insert_tag(renderer_class, config, collection)
             end
           end
         end
+
 
       end
     end
